@@ -13,6 +13,6 @@ readme_connect_img_scale_v2.md
 
 Code:
 
-Only_3BPR_PK_ipso_all_valid_dynamic.md
+Only_3BPR_PK_ipso_all_valid_dynamic.m
 
-connect_img_scale_v2.md
+connect_img_scale_v2.m
