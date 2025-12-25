@@ -6,8 +6,17 @@ ipso bpr(matlab)
 ***Paper C. 3) Quantitative Performance Evaluation***
 
 FIGURE 7.	Comparison of algorithm convergence.
+
 FIGURE 8.	Comparison of the best fitness values.
+
 TABLE II Comparative Performance Metrics for the Baseline and IPSOBPNN
+
+Only_2PSO_PK_multi_run_all_ttest2.m
+
+|--PSO_standard.m
+
+|--PSO_improved_p.m
+
 
 
 
