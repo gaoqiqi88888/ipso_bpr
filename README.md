@@ -3,6 +3,14 @@ ipso bpr(matlab)
 
 ——————————————————————————————————————————
 
+***Paper C. 3) Quantitative Performance Evaluation***
+
+FIGURE 7.	Comparison of algorithm convergence.
+FIGURE 8.	Comparison of the best fitness values.
+TABLE II Comparative Performance Metrics for the Baseline and IPSOBPNN
+
+
+
 ***Paper D.COMPARISON OF THE EFFECTS OF FIVE IMAGE RESTORATION ALGORITHMS***
 
 TABLE III Comprehensive PSNR Comparisons of Five Restoration Algorithms (dB)
