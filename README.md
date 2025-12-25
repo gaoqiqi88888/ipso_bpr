@@ -5,11 +5,11 @@ ipso bpr(matlab)
 
 ***Paper C. 3) Quantitative Performance Evaluation***
 
-FIGURE 7.	Comparison of algorithm convergence.
+1. FIGURE 7.	Comparison of algorithm convergence.
 
-FIGURE 8.	Comparison of the best fitness values.
+2. FIGURE 8.	Comparison of the best fitness values.
 
-TABLE II Comparative Performance Metrics for the Baseline and IPSOBPNN
+3. TABLE II Comparative Performance Metrics for the Baseline and IPSOBPNN
 
 Only_2PSO_PK_multi_run_all_ttest2.m
 
@@ -22,7 +22,7 @@ Only_2PSO_PK_multi_run_all_ttest2.m
 
 ***Paper D.COMPARISON OF THE EFFECTS OF FIVE IMAGE RESTORATION ALGORITHMS***
 
-1.TABLE III Comprehensive PSNR Comparisons of Five Restoration Algorithms (dB)
+1. TABLE III Comprehensive PSNR Comparisons of Five Restoration Algorithms (dB)
 
 Only_vwnr.m
 |--Cloumn：WFR		
@@ -34,12 +34,12 @@ Only_3BPR_PK_ipso_all_valid_dynamic.m
 |--Cloumn：BPR	PSOBPR	IPSOBPR
 
 
-2.FIGURE 9.	Comparison of algorithm restoration results.
+2. FIGURE 9.	Comparison of algorithm restoration results.
 
 connect_img_scale_v2.m
 
 
-3.TABLE IV Objective Evaluation of Different Restoration Algorithms
+3. TABLE IV Objective Evaluation of Different Restoration Algorithms
 
 readme_Only_res_all_printv2.m
 
