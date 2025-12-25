@@ -33,6 +33,7 @@ Only_clsd.m
 Only_3BPR_PK_ipso_all_valid_dynamic.m
 |--Cloumn：BPR	PSOBPR	IPSOBPR
 
+The images in the connect directory are experimental results that will later be combined into FIGURE 9. 
 
 2. FIGURE 9.	Comparison of algorithm restoration results.
 
