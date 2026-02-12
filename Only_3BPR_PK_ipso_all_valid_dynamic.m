@@ -53,15 +53,16 @@ myt1 = clock;
 %% 1. 基础参数与路径配置
 % 1.1 数据加载路径（PSO/IPSO优化结果文件，替换原GA/IGA数据）
 % mat_name = 'ipso/dataset/best90_r100_Lenna.mat';  % 指定PSO/IPSO结果数据文件,lenna发表禁用。是否混合模糊，请查验
-mat_name =  '\ipso_bpr_v3\dataset\best90_0801_pop50_gen50_20251129.mat';
+mat_name =  'D:\matlab dev\ipso_bpr_v3\ipso\dataset\best90_0801_pop50_gen50_20260211';
+% best90_0801_pop50_gen50_20251218.mat
 
 
 load(mat_name);  % 加载数据：含PSO_bestchrom、PSO_bestfitness、IPSO_bestchrom、IPSO_bestfitness等
 
 
 % 1.2 实验控制参数（按老论文单图对比逻辑）
-maxit = 100;      % 图像还原对比次数（老论文常用1000次以统计稳定性）
-
+% maxit = 100;      % 图像还原对比次数（老论文常用1000次以统计稳定性）
+maxit = 100;
 
 inputnum = 9;      % 输入节点数（3×3滑动窗口，与原网络一致）
 hiddennum = 9;     % 隐藏层节点数
@@ -317,38 +318,87 @@ for pic_index = 1:n
 end
 
 
-
 %% 论文Table 4 Objective evaluation of three restoration algorithms
 %论文 Table4 数据保存到Table4.xlsx中
-table (:,1:3)= All_psnr_best;
-table (:,4:6)= All_psnr_mean;
-table (:,7:9)= All_mse_best;
-table (:,10:12)= All_mse_mean;
-xlswrite('ipso/Table 4.xlsx',All_psnr_best,'Sheet1');
-xlswrite('ipso/Table 4.xlsx',All_psnr_mean,'Sheet2');
-xlswrite('ipso/Table 4.xlsx',All_mse_best,'Sheet3');
-xlswrite('ipso/Table 4.xlsx',All_mse_mean,'Sheet4');
-xlswrite('ipso/Table 4.xlsx',table,'Sheet5');
+table_data = zeros(num_tifs, 12);
+table_data(:,1:3)= All_psnr_best;
+table_data(:,4:6)= All_psnr_mean;
+table_data(:,7:9)= All_mse_best;
+table_data(:,10:12)= All_mse_mean;
+
+% 创建表头
+headers = {'BPR_PSNR_best', 'PSOBPR_PSNR_best', 'IPSOBPR_PSNR_best', ...
+           'BPR_PSNR_mean', 'PSOBPR_PSNR_mean', 'IPSOBPR_PSNR_mean', ...
+           'BPR_MSE_best', 'PSOBPR_MSE_best', 'IPSOBPR_MSE_best', ...
+           'BPR_MSE_mean', 'PSOBPR_MSE_mean', 'IPSOBPR_MSE_mean'};
+
+% 写入Sheet1
+xlswrite('ipso/Table 4.xlsx', headers(1:3), 'Sheet1', 'A1');
+xlswrite('ipso/Table 4.xlsx', All_psnr_best, 'Sheet1', 'A2');
+
+% 写入Sheet2
+xlswrite('ipso/Table 4.xlsx', headers(4:6), 'Sheet2', 'A1');
+xlswrite('ipso/Table 4.xlsx', All_psnr_mean, 'Sheet2', 'A2');
+
+% 写入Sheet3
+xlswrite('ipso/Table 4.xlsx', headers(7:9), 'Sheet3', 'A1');
+xlswrite('ipso/Table 4.xlsx', All_mse_best, 'Sheet3', 'A2');
+
+% 写入Sheet4
+xlswrite('ipso/Table 4.xlsx', headers(10:12), 'Sheet4', 'A1');
+xlswrite('ipso/Table 4.xlsx', All_mse_mean, 'Sheet4', 'A2');
+
+% 写入完整表格到Sheet5
+xlswrite('ipso/Table 4.xlsx', headers, 'Sheet5', 'A1');
+xlswrite('ipso/Table 4.xlsx', table_data, 'Sheet5', 'A2');
 
 
 
 %% 论文Table 5 Objective evaluation of three restoration algorithms
 %论文 Table5 数据保存到Table5.xlsx中
-table (:,1:3)= All_psnr_best;
-table (:,4:6)= All_psnr_mean;
-table (:,7:9)= All_mse_best;
-table (:,10:12)= All_mse_mean;
-table (:,13:15)= All_ssim_best;
-table (:,16:18)= All_ssim_mean;
-xlswrite('ipso/Table 5.xlsx',All_psnr_best,'Sheet1');
-xlswrite('ipso/Table 5.xlsx',All_psnr_mean,'Sheet2');
-xlswrite('ipso/Table 5.xlsx',All_mse_best,'Sheet3');
-xlswrite('ipso/Table 5.xlsx',All_mse_mean,'Sheet4');
-xlswrite('ipso/Table 5.xlsx',All_ssim_best,'Sheet5');
-xlswrite('ipso/Table 5.xlsx',All_ssim_mean,'Sheet6');
-xlswrite('ipso/Table 5.xlsx',table,'Sheet7');
+table_data2 = zeros(num_tifs, 18);
+table_data2(:,1:3)= All_psnr_best;
+table_data2(:,4:6)= All_psnr_mean;
+table_data2(:,7:9)= All_mse_best;
+table_data2(:,10:12)= All_mse_mean;
+table_data2(:,13:15)= All_ssim_best;
+table_data2(:,16:18)= All_ssim_mean;
 
+% 创建表头
+headers2 = {'BPR_PSNR_best', 'PSOBPR_PSNR_best', 'IPSOBPR_PSNR_best', ...
+            'BPR_PSNR_mean', 'PSOBPR_PSNR_mean', 'IPSOBPR_PSNR_mean', ...
+            'BPR_MSE_best', 'PSOBPR_MSE_best', 'IPSOBPR_MSE_best', ...
+            'BPR_MSE_mean', 'PSOBPR_MSE_mean', 'IPSOBPR_MSE_mean', ...
+            'BPR_SSIM_best', 'PSOBPR_SSIM_best', 'IPSOBPR_SSIM_best', ...
+            'BPR_SSIM_mean', 'PSOBPR_SSIM_mean', 'IPSOBPR_SSIM_mean'};
 
+% 写入Sheet1
+xlswrite('ipso/Table 5.xlsx', headers2(1:3), 'Sheet1', 'A1');
+xlswrite('ipso/Table 5.xlsx', All_psnr_best, 'Sheet1', 'A2');
+
+% 写入Sheet2
+xlswrite('ipso/Table 5.xlsx', headers2(4:6), 'Sheet2', 'A1');
+xlswrite('ipso/Table 5.xlsx', All_psnr_mean, 'Sheet2', 'A2');
+
+% 写入Sheet3
+xlswrite('ipso/Table 5.xlsx', headers2(7:9), 'Sheet3', 'A1');
+xlswrite('ipso/Table 5.xlsx', All_mse_best, 'Sheet3', 'A2');
+
+% 写入Sheet4
+xlswrite('ipso/Table 5.xlsx', headers2(10:12), 'Sheet4', 'A1');
+xlswrite('ipso/Table 5.xlsx', All_mse_mean, 'Sheet4', 'A2');
+
+% 写入Sheet5
+xlswrite('ipso/Table 5.xlsx', headers2(13:15), 'Sheet5', 'A1');
+xlswrite('ipso/Table 5.xlsx', All_ssim_best, 'Sheet5', 'A2');
+
+% 写入Sheet6
+xlswrite('ipso/Table 5.xlsx', headers2(16:18), 'Sheet6', 'A1');
+xlswrite('ipso/Table 5.xlsx', All_ssim_mean, 'Sheet6', 'A2');
+
+% 写入完整表格到Sheet7
+xlswrite('ipso/Table 5.xlsx', headers2, 'Sheet7', 'A1');
+xlswrite('ipso/Table 5.xlsx', table_data2, 'Sheet7', 'A2');
 
 
 
