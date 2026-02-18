@@ -141,7 +141,7 @@ fprintf('Selected %d images for comparison test\n', num_images);
 
 %% 3. 初始化结果存储结构
 % 算法列表
-algorithms = {'PSO', 'IPSO', 'GA', 'HPA', 'WOA', 'RIME'};
+algorithms = {'PSO', 'IPSO', 'GA', 'HBA', 'WOA', 'RIME'};
 num_algorithms = length(algorithms);
 
 % 每张图的结果
@@ -259,9 +259,8 @@ for img_idx = 1:num_images
         % Results{img_idx}.trace{4}(:, run) = trace;
         % Results{img_idx}.best_chrom{4}{run} = bestchrom;
 
-        %% HPA
-
-            t_start = tic;
+        %% HBA
+        t_start = tic;
         [bestchrom, bestfitness, trace] = HBA_optimizer(...
             sizepop, maxgen, numsum, fobj, pos_min, pos_max, hba_params);
         Results{img_idx}.time(4, run) = toc(t_start);
